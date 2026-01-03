@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My Orders</h1>
+<hr>
+
+{% if orders %}
+  <ul class="list-group">
+    {% for o in orders %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{{ url_for('order_receipt', order_id=o['id']) }}">Order #{{ o['id'] }}</a>
+        <span>£{{ '%.2f'|format(o['total']) }} | {{ o['status'] }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="text-muted">No orders yet.</p>
+{% endif %}
+{% endblock %}
+

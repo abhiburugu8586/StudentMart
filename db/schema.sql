@@ -1,0 +1,60 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE categories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user INTEGER NOT NULL REFERENCES users(id),
+  category INTEGER NOT NULL REFERENCES categories(id),
+  name TEXT NOT NULL,
+  description TEXT,
+  price REAL NOT NULL,
+  image_url TEXT,
+  stock INTEGER DEFAULT 0
+);
+-- -----------------------------
+-- Cart (per user)
+-- -----------------------------
+DROP TABLE IF EXISTS cart_items;
+
+CREATE TABLE cart_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  quantity INTEGER NOT NULL DEFAULT 1,
+  UNIQUE(user_id, product_id)
+);
+
+-- -----------------------------
+-- Orders (header + line items)
+-- -----------------------------
+DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  status TEXT NOT NULL DEFAULT 'placed',  -- placed/paid/cancelled etc.
+  total REAL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE order_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_id INTEGER NOT NULL REFERENCES orders(id),
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  quantity INTEGER NOT NULL DEFAULT 1,
+  price_each REAL NOT NULL
+);

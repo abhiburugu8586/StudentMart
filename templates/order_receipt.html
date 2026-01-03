@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Order #{{ order['id'] }}</h1>
+<p class="text-muted">Placed: {{ order['created'] }} | Status: {{ order['status'] }}</p>
+<hr>
+
+<table class="table">
+  <thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Line total</th></tr></thead>
+  <tbody>
+    {% for i in items %}
+      <tr>
+        <td>{{ i['name'] }}</td>
+        <td>{{ i['quantity'] }}</td>
+        <td>£{{ '%.2f'|format(i['price_each']) }}</td>
+        <td>£{{ '%.2f'|format(i['price_each'] * i['quantity']) }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4>Total: £{{ '%.2f'|format(order['total']) }}</h4>
+<a class="btn btn-secondary" href="{{ url_for('orders') }}">Back to Orders</a>
+{% endblock %}

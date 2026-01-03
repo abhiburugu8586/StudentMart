@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="get" class="mb-4">
+  <div class="input-group">
+    <input type="text"
+           name="q"
+           class="form-control"
+           placeholder="Search products..."
+           value="{{ request.args.get('q', '') }}">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
+
+  <h1>Hello {{ username }} Welcome to StudentMart</h1>
+  <hr>
+  <h4>Recently Added Products</h4>
+
+<div class="row g-3">
+  {% for p in products %}
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 product-card">
+
+        {% if p['image_url'] %}
+          <img src="{{ p['image_url'] }}" class="card-img-top product-img" alt="{{ p['name'] }}">
+        {% endif %}
+
+        <div class="card-body d-flex flex-column">
+          <h6 class="card-title">{{ p['name'] }}</h6>
+          <p class="text-muted small mb-1">{{ p['category_name'] }}</p>
+          <p class="fw-bold mb-2">£{{ '%.2f'|format(p['price']) }}</p>
+
+          <a class="btn btn-outline-secondary btn-sm mt-auto"
+             href="{{ url_for('product', id=p['id']) }}">View</a>
+        </div>
+
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Your Cart</h1>
+<hr>
+
+{% if cart_items %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th style="width:140px">Qty</th>
+        <th>Price</th>
+        <th>Line total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td>{{ item['name'] }}</td>
+        <td>
+          <form method="post" action="{{ url_for('cart_update', product_id=item['product_id']) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input class="form-control" type="number" name="qty" min="0" value="{{ item['quantity'] }}">
+            <button class="btn btn-sm btn-secondary mt-2" type="submit">Update</button>
+          </form>
+        </td>
+        <td>£{{ '%.2f'|format(item['price']) }}</td>
+        <td>£{{ '%.2f'|format(item['price'] * item['quantity']) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4>Total: £{{ '%.2f'|format(total) }}</h4>
+
+  <form method="post" action="{{ url_for('checkout') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="btn btn-success">Checkout</button>
+  </form>
+{% else %}
+  <p class="text-muted">Your cart is empty.</p>
+{% endif %}
+
+{% endblock %}
