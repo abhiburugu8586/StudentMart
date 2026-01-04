@@ -56,7 +56,7 @@ This structure improves maintainability and scalability.
 
 ## 📂 Project Structure
 
-StudentMart/
+'''StudentMart/
 │
 ├── app.py
 ├── db/
@@ -83,7 +83,7 @@ StudentMart/
 │ └── uploads/
 │
 ├── venv/
-└── README.md
+└── README.md'''
 
 
 ---
