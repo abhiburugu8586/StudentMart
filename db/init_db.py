@@ -9,7 +9,7 @@ with open("schema.sql", "r", encoding="utf-8") as f:
 
 cur = connection.cursor()
 
-# Users (passwords are hashed, like workshop) :contentReference[oaicite:12]{index=12}
+# Users (passwords are hashed)
 cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",
             ("admin", generate_password_hash("password")))
 cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",

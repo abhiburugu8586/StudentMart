@@ -5,9 +5,9 @@ StudentMart is a full-stack e-commerce web application built using **Flask** and
 
 ---
 
-## 📌 Features
+##  Features
 
-### 👤 User Features
+###  User Features
 - User registration and login
 - Browse products by category
 - Search products by name (Home page search)
@@ -16,7 +16,7 @@ StudentMart is a full-stack e-commerce web application built using **Flask** and
 - Update cart quantities
 - Place orders and view order history
 
-### 🔐 Admin Features
+### Admin Features
 - Admin-only access for product management
 - Add new products with image upload
 - Update existing products
@@ -26,7 +26,7 @@ StudentMart is a full-stack e-commerce web application built using **Flask** and
 
 ---
 
-## 🏗️ Project Architecture
+##  Project Architecture
 
 The project follows a **modular MVC-style architecture**:
 
@@ -39,7 +39,7 @@ This structure improves maintainability and scalability.
 
 ---
 
-## 🧰 Technologies Used
+##  Technologies Used
 
 | Technology | Description |
 |----------|------------|
@@ -54,7 +54,7 @@ This structure improves maintainability and scalability.
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 '''StudentMart/
 │
@@ -88,25 +88,25 @@ This structure improves maintainability and scalability.
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
-### 1️⃣ Clone the repository
+### 1️ Clone the repository
 ```bash
 git clone https://github.com/your-username/studentmart.git
 cd StudentMart
 
-### 2️⃣ Create and activate virtual environment
+### 2️ Create and activate virtual environment
 
 python -m venv venv
 venv\Scripts\activate   # Windows
 
-3️⃣ Install dependencies
+3️ Install dependencies
 pip install flask flask-wtf
 
-4️⃣ Initialize the database
+4️ Initialize the database
 python db/init_db.py
 
-5️⃣ Run the application
+5️ Run the application
 python app.py
 
 
@@ -114,7 +114,7 @@ Visit:
 
 http://127.0.0.1:5000/
 
-🖼️ Image Upload Handling
+Image Upload Handling
 
 Product images are uploaded via product creation and update forms
 
@@ -127,7 +127,7 @@ Only the image path is saved in the database
 
 Images are resized using CSS (object-fit) for consistent layout
 
-🔒 Security Features
+ Security Features
 
 Session-based authentication
 
@@ -139,7 +139,7 @@ Input validation for forms
 
 Protected admin routes using decorators
 
-🧪 Testing
+ Testing
 
 The application was tested manually for:
 
@@ -157,7 +157,7 @@ Search functionality
 
 All features function as expected.
 
-⚠️ Limitations
+ Limitations
 
 No online payment gateway
 
@@ -167,7 +167,7 @@ Single image per product
 
 SQLite is not suitable for large-scale production use
 
-🔮 Future Enhancements
+ Future Enhancements
 
 Payment gateway integration
 
@@ -181,7 +181,7 @@ Order tracking and notifications
 
 Advanced search and filtering options
 
-🎓 Academic Context
+ Academic Context
 
 This project was developed as part of a university coursework to demonstrate:
 
@@ -197,11 +197,13 @@ Secure form handling
 
 👤 Author
 
-Abhi
-MSc Computing Student
+Abhishekar
+Geetanjali
+EkpezuEgwu 
+MSc Computing Students
 Sheffield Hallam University
 
-📄 License
+ License
 
 This project is intended for educational purposes only.
 

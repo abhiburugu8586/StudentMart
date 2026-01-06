@@ -24,9 +24,9 @@ CREATE TABLE products (
   image_url TEXT,
   stock INTEGER DEFAULT 0
 );
--- -----------------------------
+
 -- Cart (per user)
--- -----------------------------
+
 DROP TABLE IF EXISTS cart_items;
 
 CREATE TABLE cart_items (
@@ -37,9 +37,9 @@ CREATE TABLE cart_items (
   UNIQUE(user_id, product_id)
 );
 
--- -----------------------------
+
 -- Orders (header + line items)
--- -----------------------------
+
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
 

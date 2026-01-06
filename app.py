@@ -20,7 +20,7 @@ def allowed_file(filename: str) -> bool:
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# Required for CSRF + sessions (workshop pattern) :contentReference[oaicite:22]{index=22}
+# Required for CSRF + sessions 
 app.secret_key = "your_secret_key"
 csrf = CSRFProtect(app)
 
@@ -40,20 +40,20 @@ def admin_required(view):
     return wrapped
 
 
-# CSRF token available in all templates (workshop pattern) :contentReference[oaicite:23]{index=23}
+# CSRF token available in all templates 
 @app.context_processor
 def inject_csrf_token():
     return dict(csrf_token=generate_csrf())
 
-# Global variable for site name used in templates (workshop 6.2 idea) :contentReference[oaicite:24]{index=24}
+# Global variable for site name used in templates 
 siteName = "StudentMart"
 @app.context_processor
 def inject_site_name():
     return dict(siteName=siteName)
 
-# ---------------------------
+
 # Pages
-# ---------------------------
+
 @app.route("/")
 def index():
     query = request.args.get("q", "").strip()
@@ -69,9 +69,9 @@ def index():
 def about():
     return render_template("about.html", title="About")
 
-# ---------------------------
+
 # Auth (Register/Login/Logout)
-# ---------------------------
+
 @app.route("/register/", methods=("GET", "POST"))
 def register():
     if request.method == "POST":
@@ -131,9 +131,9 @@ def logout():
     flash(category="info", message="You have been logged out.")
     return redirect(url_for("index"))
 
-# ---------------------------
+
 # Products
-# ---------------------------
+
 @app.route("/products/")
 def products():
     category_id = request.args.get("category", default=None, type=int)
@@ -149,9 +149,9 @@ def product(id):
         return redirect(url_for("products"))
     return render_template("product.html", title=item["name"], product=item)
 
-# ---------------------------
+
 # Product CRUD (Admin/User-owned)
-# ---------------------------
+
 
 @app.route("/product/create/", methods=("GET", "POST"))
 def product_create():
@@ -229,7 +229,7 @@ def product_update(id):
         flash(category="warning", message="Product not found!")
         return redirect(url_for("products"))
 
-    # Permission check (same idea as workshop ownership checks) :contentReference[oaicite:25]{index=25}
+    # Permission check 
     if item["user"] != session.get("user_id"):
         flash(category="danger", message="You do not have permission to edit this product.")
         return redirect(url_for("product", id=id))

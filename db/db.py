@@ -63,7 +63,7 @@ def get_user_by_id(user_id):
         abort(404)
     return user
 
-# ---------- Catalog ----------
+# Catalog 
 def get_all_categories():
     conn = get_db_connection()
     cats = conn.execute("SELECT * FROM categories ORDER BY name ASC").fetchall()
@@ -118,7 +118,7 @@ def get_product_by_id(product_id):
     conn.close()
     return row
 
-# ---------- Product CRUD (like workshop CRUD patterns) ----------
+# Product CRUD  
 def create_product(user_id, category_id, name, description, price, image_url, stock):
     conn = get_db_connection()
     conn.execute("""
@@ -143,9 +143,9 @@ def delete_product(product_id):
     conn.execute("DELETE FROM products WHERE id=?", (product_id,))
     conn.commit()
     conn.close()
-# -----------------------------
+
 # Cart helpers
-# -----------------------------
+
 def cart_add_item(user_id, product_id, qty=1):
     conn = get_db_connection()
 
@@ -192,9 +192,9 @@ def cart_clear(user_id):
     conn.commit()
     conn.close()
 
-# -----------------------------
+
 # Orders helpers
-# -----------------------------
+
 def order_create_from_cart(user_id):
     items = cart_get_items(user_id)
     if not items:
