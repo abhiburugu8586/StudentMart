@@ -154,6 +154,7 @@ def product(id):
 
 
 @app.route("/product/create/", methods=("GET", "POST"))
+@admin_required
 def product_create():
     if session.get("user_id") is None:
         flash(category="warning", message="You must be logged in to add products.")
@@ -212,13 +213,12 @@ def product_create():
 
     return render_template("product_form.html", title="Add Product", categories=cats, product=None)
 
-@admin_required
-def product_create():
-    ...
+
 
 
 
 @app.route("/product/update/<int:id>/", methods=("GET", "POST"))
+@admin_required
 def product_update(id):
     if session.get("user_id") is None:
         flash(category="warning", message="You must be logged in to update products.")
@@ -276,13 +276,12 @@ def product_update(id):
 
     return render_template("product_form.html", title="Update Product", categories=cats, product=item)
 
-@admin_required
-def product_update(id):
-    ...
+
 
 
 
 @app.route("/product/delete/<int:id>/", methods=("POST",))
+@admin_required
 def product_delete(id):
     if session.get("user_id") is None:
         flash(category="warning", message="You must be logged in to delete products.")
@@ -300,9 +299,7 @@ def product_delete(id):
     delete_product(id)
     flash(category="success", message="Product deleted successfully!")
     return redirect(url_for("products"))
-@admin_required
-def product_delete(id):
-    ...
+
 
 
 @app.route("/cart/")
